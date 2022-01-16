@@ -1,0 +1,17 @@
+{
+    "name": "Hatchways Backend Assessment",
+    "version": "1.0.0",
+    "description": "",
+    "main": "server/server.js",
+    "scripts": {
+        "start": "nodemon server/server.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "johnhaberstroh",
+    "dependencies": {
+        "axios": "^0.24.0",
+        "express": "^4.17.2",
+        "node-fetch": "^3.1.0",
+        "nodemon": "^2.0.15"
+    }
+}
