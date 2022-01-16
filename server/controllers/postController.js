@@ -1,13 +1,16 @@
 const postController = {};
 const axios = require("axios");
-
+const apiString = "https://api.hatchways.io/assessment/blog/posts?";
+const optionalString = "";
 postController.getPosts = (req, res, next) => {
-  const { tags } = req.query;
+  const { tags, sortBy, direction } = req.query;
+  //optionalString = `&sortBy=${sortBy}`;
   if (tags) {
     tags.split(",").forEach((tag) => {
       axios
-        .get(`https://api.hatchways.io/assessment/blog/posts?tag=${tag}`)
+        .get(`${apiString}tag=${tag}`)
         .then((data) => {
+          console.log(data);
           res.locals.posts = data.data.posts;
           next();
         })
