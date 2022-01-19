@@ -5,6 +5,7 @@ const {
   validateQueries,
   generateQueries,
 } = require("../controllers/queryController");
+
 const success = 200;
 
 router.get("/ping", (req, res) => {
@@ -19,6 +20,7 @@ router.get(
   getPosts,
   sortPosts,
   (req, res) => {
+    console.log("hello", res.locals.posts);
     return res.status(success).json({ posts: res.locals.posts });
   }
 );
