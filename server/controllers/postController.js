@@ -1,26 +1,37 @@
 const postController = {};
 const axios = require("axios");
-const apiString = "https://api.hatchways.io/assessment/blog/posts?";
-const optionalString = "";
-postController.getPosts = (req, res, next) => {
-  const { tags, sortBy, direction } = req.query;
-  //optionalString = `&sortBy=${sortBy}`;
-  if (tags) {
-    tags.split(",").forEach((tag) => {
-      axios
-        .get(`${apiString}tag=${tag}`)
-        .then((data) => {
-          console.log(data);
-          res.locals.posts = data.data.posts;
-          next();
-        })
-        .catch((err) => next(err));
-    });
-  } else {
-    return next();
+
+postController.getPosts = async (req, res, next) => {
+  let apiCalls = res.locals.queries.map((queryString) => {
+    return axios.get(queryString);
+  });
+
+  try {
+    res.locals.responseToSort = await Promise.all(apiCalls);
+    next();
+  } catch (err) {
+    return next({ error: err });
   }
 };
 
-postController.sortPosts = (req, res, next) => {};
+postController.sortPosts = (req, res, next) => {
+  let seenSet = new Set();
+  let posts = [];
+  try {
+    res.locals.responseToSort.forEach((response) => {
+      response.data.posts.forEach((post) => {
+        if (!seenSet.has(post.id)) {
+          seenSet.add(post.id);
+          posts.push(post);
+        }
+      });
+    });
+    seenSet.clear();
+    res.locals.posts = posts;
+    next();
+  } catch (err) {
+    return next({ error: err });
+  }
+};
 
 module.exports = postController;
