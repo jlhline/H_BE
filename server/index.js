@@ -1,9 +1,14 @@
-import app from "./server";
-
+const app = require("./server.js");
+const redisConnect = require("./helpers/redisConnect.js");
 const PORT = 3000;
+const redisPort = 6379;
 
 app.listen(PORT, () => {
-  console.log(`Server listening on port: ${PORT}`);
+  console.log(`Express server listening on port: ${PORT}`);
 });
 
-export default index;
+redisConnect.connectToRunningServer(redisPort, () => {
+  console.log(`Redis server listening on port: ${redisPort}`);
+});
+
+module.exports = app;

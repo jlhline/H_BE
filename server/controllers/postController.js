@@ -5,7 +5,6 @@ postController.getPosts = async (req, res, next) => {
   let apiCalls = res.locals.queries.map((queryString) => {
     return axios.get(queryString);
   });
-
   try {
     res.locals.responseToSort = await Promise.all(apiCalls);
     next();
@@ -14,7 +13,7 @@ postController.getPosts = async (req, res, next) => {
   }
 };
 
-postController.sortPosts = (req, res, next) => {
+postController.filterPosts = (req, res, next) => {
   let seenSet = new Set();
   let posts = [];
   try {

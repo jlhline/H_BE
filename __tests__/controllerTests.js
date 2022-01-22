@@ -11,9 +11,7 @@ describe("test validateQueries middleware", () => {
       },
     });
 
-    const { res, next } = getMockRes({
-      locals: {},
-    });
+    const { res, next } = getMockRes();
 
     await queryController.validateQueries(req, res, next);
 

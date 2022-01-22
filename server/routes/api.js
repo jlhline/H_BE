@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { getPosts, sortPosts } = require("../controllers/postController");
+const { getPosts, filterPosts } = require("../controllers/postController");
 const {
   validateQueries,
   generateQueries,
@@ -18,7 +18,7 @@ router.get(
   validateQueries,
   generateQueries,
   getPosts,
-  sortPosts,
+  filterPosts,
   (req, res) => {
     console.log("hello", res.locals.posts);
     return res.status(success).json({ posts: res.locals.posts });
