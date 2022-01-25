@@ -14,6 +14,7 @@ app.use((err, req, res, next) => {
     message: { error: "An error occurred." },
   };
   const errorObj = Object.assign({}, defaultErr, err);
+  console.log("hiiiii", errorObj);
   return res.status(errorObj.status).send(errorObj.error).json();
 });
 

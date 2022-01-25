@@ -1,10 +1,16 @@
 const express = require("express");
 const router = express.Router();
-const { getPosts, filterPosts } = require("../controllers/postController");
+const {
+  getPosts,
+  filterPosts,
+  sortPosts,
+} = require("../controllers/postController");
 const {
   validateQueries,
   generateQueries,
 } = require("../controllers/queryController");
+
+const { cacheChecks, addToCache } = require("../controllers/cacheController");
 
 const success = 200;
 
@@ -17,10 +23,12 @@ router.get(
   "/posts",
   validateQueries,
   generateQueries,
+  cacheChecks,
   getPosts,
+  addToCache,
   filterPosts,
+  sortPosts,
   (req, res) => {
-    console.log("hello", res.locals.posts);
     return res.status(success).json({ posts: res.locals.posts });
   }
 );

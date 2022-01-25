@@ -20,13 +20,9 @@ queryController.validateQueries = (req, res, next) => {
 };
 
 queryController.generateQueries = (req, res, next) => {
-  //const { sortBy, direction } = req.query;
-
   if (res.locals.tags) {
     res.locals.queries = res.locals.tags.map((tag) => {
       let currString = constants.append.tag + tag;
-      // if (sortBy) currString += constants.append.sortBy + sortBy;
-      // if (direction) currString += constants.append.direction + direction;
       return constants.apiString + currString;
     });
 

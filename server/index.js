@@ -7,8 +7,8 @@ app.listen(PORT, () => {
   console.log(`Express server listening on port: ${PORT}`);
 });
 
-redisConnect.connectToRunningServer(redisPort, () => {
-  console.log(`Redis server listening on port: ${redisPort}`);
+redisConnect.connectToRunningServer(() => {
+  console.log(`Redis server listening on default port: ${redisPort}`);
 });
 
 module.exports = app;
