@@ -1,3 +1,5 @@
+//These are the constants to check incoming queries against
+//As well as constants for the api query
 const queryConstants = {
   sortBy: {
     id: true,
@@ -10,8 +12,6 @@ const queryConstants = {
     desc: true,
   },
   append: {
-    sortBy: "&sortBy=",
-    direction: "&direction=",
     tag: "tag=",
   },
   apiString: "https://api.hatchways.io/assessment/blog/posts?",
