@@ -7,7 +7,7 @@ To start the server:
 
 Make sure that you have redis installed and running locally
 If you don't have redis on the machine that is running this,
-Make sure wget is installed(for mac use homebrew) and then run these commands:
+Make sure wget is installed(for mac use homebrew) and then run these commands:  
 wget https://download.redis.io/releases/redis-6.0.9.tar.gz  
 wget https://download.redis.io/releases/redis-6.2.4.tar.gz  
 tar xzf redis-6.2.4.tar.gz  
